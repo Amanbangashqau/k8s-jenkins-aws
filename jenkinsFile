@@ -26,7 +26,17 @@ node {
         sh 'docker push  amanbangash99/k8-jenkins:k8-demo'
     }
     
-    stage("kubernetes deployment"){
-        sh 'kubectl delete -f k8s-spring-boot-deployment.yml'
+    // stage("kubernetes deployment"){
+     //   sh 'kubectl delete -f k8s-spring-boot-deployment.yml'
+    //}
+    
+    stage('K8S Deploy') {
+        steps{   
+            script {
+                withKubeConfig([credentialsId: 'K8S', serverUrl: '']) {
+                sh ('kubectl apply -f  eks-deploy-k8s.yaml')
+                }
+            }
+        }
     }
 } 
