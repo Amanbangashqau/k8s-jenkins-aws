@@ -32,7 +32,7 @@ node {
     
     stage('K8S Deploy') {
         kubeconfig(credentialsId: 'K8S', serverUrl: '') {
-             sh ('kubectl apply -f  eks-deploy-k8s.yaml')
+             sh ('kubectl apply -f  k8s-spring-boot-deployment.yml')
         }
 
     }
